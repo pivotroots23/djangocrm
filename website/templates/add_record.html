@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-9">
+        <div class="login-wrap p-4 p-md-5">
+            <h3 class="text-center mb-4">Add Record</h3>
+            <form class="login-form" method="POST" action="{% url 'add_record' %}">
+                {% csrf_token %}
+                <ul class="formList">
+                    {{ form.as_ul }}
+                </ul>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Add Record</button>
+                </div>
+            </form>
+        </div>
+        <br/>
+<p><a href="{% url 'home' %}" class="btn btn-secondary">Go back</a></p>
+    </div>
+</div>
+
+{% endblock %}

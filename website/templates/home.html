@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-12 textAlignRight">
+        <a href="{% url 'add_record' %}" class="btn btn-secondary btn-sm rounded-1 marginTop2">Add New User</a>
+    </div>
+    <div class="col-md-6 col-lg-12">        
+            <div class="table-responsive">
+                <table class="table caption-top table-bordered table-striped table-hover">
+                    <caption>List of users</caption>
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Zipcode</th>
+                        <th scope="col">Ctrated At</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in records %}
+                      <tr>
+                        <th scope="row">{{record.id}}</th>
+                        <td>{{record.first_name}} {{record.last_name}}</td>
+                        <td>{{record.email}}</td>
+                        <td>{{record.phone}}</td>
+                        <td>{{record.address}}</td>
+                        <td>{{record.city}}</td>
+                        <td>{{record.state}}</td>
+                        <td>{{record.zipcode}}</td>
+                        <td>{{record.created_at}}</td>
+                        <td>
+                            <div class="actionLink">
+                                <a href="{% url 'record' record.id %}" title="User Vew" class="btn btn-secondary btn-sm rounded-1"><i class="fa fa-eye"></i></a>
+                                <a href="{% url 'update_record' record.id %}" title="User Delete" class="btn btn-secondary btn-sm rounded-1"><i class="fas fa-user-edit"></i></a>
+                                <a href="{% url 'delete_record' record.id %}" title="User Edit" class="btn btn-secondary btn-sm rounded-1"><i class='fas fa-user-slash'></i></a>
+                            </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    {% if records.count < 1 %}
+                    <tr>
+                        <td colspan="10">{{ records.count }}</td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            
+        
+    </div>
+</div>
+{% else %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="login-wrap p-4 p-md-5">
+            <div class="icon d-flex align-items-center justify-content-center">
+                <span class="fa fa-user-o"></span>
+            </div>
+            <h3 class="text-center mb-4">Login</h3>
+            <form action="{% url 'home' %}" class="login-form" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control rounded-left" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group d-flex">
+                    <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group d-md-flex">
+                    <div class="w-50">
+                        <label class="checkbox-wrap checkbox-primary">Remember Me
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="w-50 text-md-right">
+                        <a href="#">Forgot Password</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Get Started</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+            {% endblock %}
