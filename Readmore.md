@@ -1,17 +1,14 @@
 # Author: Ranjay Kumar
 # Description: Step by step Create a Django CRM
 
-# If Mysql Community Server Install in your PC  then leave this inatalation otherwise Install Mysql Community Server on your Computor--------------------------------------------------------
-	# https://dev.mysql.com/downloads/installer/
-	# pip install mysql
-	# pip install mysql-connector-python
-	# pip install mysql-connector
-
 
 # Django Available subcommands to create new project go step by step:----------------------------------
     1). python -m venv virt
     2). source virt/Scripts/activate
     3). pip install django
+    
+# If Mysql Community Server Install in your PC  then leave this installation otherwise Install Mysql Community Server on your Computor if have mysql community url other wise below url for download mysql community and install then go to next step-----
+	# https://dev.mysql.com/downloads/installer/
 
     4). pip install mysql
     5). pip install mysql-connector-python
